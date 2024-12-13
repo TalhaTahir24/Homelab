@@ -26,3 +26,4 @@ tt-s3           IN      CNAME   tt-prd-prxy.tt.miaj.tech.
 tt-minio        IN      CNAME   tt-prd-prxy.tt.miaj.tech.
 grafana         IN      CNAME   tt-prd-prxy.tt.miaj.tech.
 pipeline        IN      CNAME   tt-prd-prxy.tt.miaj.tech.
+pipe1           IN      CNAME   tt-prd-prxy.tt.miaj.tech.
