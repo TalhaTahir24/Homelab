@@ -1,4 +1,4 @@
-name: Update DNS Configuration
+name: Update CV
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
         if: steps.check_changes.outputs.skip != 'no_changes'
         run: |
           echo "Uploading new index.html file to server..."
-          scp ./CV/index.html srvadmin@10.225.150.11:/tmp/index.html
+          scp ./CV/index.html srvadmin@10.225.99.14:/tmp/index.html
           
           echo "Replacing old file with the new one..."
           ssh srvadmin@10.225.150.11 << 'EOF'
