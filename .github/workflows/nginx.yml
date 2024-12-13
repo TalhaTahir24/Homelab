@@ -1,0 +1,32 @@
+name: Update DNS Configuration
+
+on:
+  push:
+    paths:
+      - 'CV/index.html'
+
+jobs:
+  update-dns:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Verify Changes to index.html File
+        id: check_changes
+        run: |
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^CV/index.html$' || echo "no_changes" > skip
+          cat skip || true
+
+      - name: Replace index.html File on Server
+        if: steps.check_changes.outputs.skip != 'no_changes'
+        run: |
+          echo "Uploading new index.html file to server..."
+          scp ./CV/index.html srvadmin@10.225.150.11:/tmp/index.html
+          
+          echo "Replacing old file with the new one..."
+          ssh srvadmin@10.225.150.11 << 'EOF'
+            sudo mv /tmp/index.html /var/www/html/index.html
+            sudo nginx -s reload
+          EOF
