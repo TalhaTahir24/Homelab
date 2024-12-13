@@ -16,7 +16,7 @@ jobs:
       - name: Replace DNS Zone File on Server
         run: |
           echo "Uploading new DNS zone file to server..."
-          scp ./db.tt.miaj.tech srvadmin@10.225.150.11:/tmp/db.tt.miaj.tech
+          scp ./DNS/db.tt.miaj.tech srvadmin@10.225.150.11:/tmp/db.tt.miaj.tech
           
           echo "Replacing old file with the new one..."
           ssh srvadmin@10.225.150.11 << 'EOF'
