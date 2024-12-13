@@ -1,0 +1,49 @@
+http:
+  routers:
+    traefik:
+      entryPoints:
+        - websecure
+      rule: "Host(`traefik.tt.miaj.tech`)"
+      service: traefik-service
+    proxmox:
+      entryPoints:
+        - websecure
+      rule: "Host(`titon.tt.miaj.tech`)"
+      service: proxmox-service
+    tt-minio:
+      entryPoints:
+        - websecure
+      rule: "Host(`tt-minio.tt.miaj.tech`)"
+      service: tt-minio
+    tt-s3:
+      entryPoints:
+        - websecure
+      rule: "Host(`tt-s3.tt.miaj.tech`)"
+      service: tt-s3
+    grafana:
+      entryPoints:
+        - websecure
+      rule: "Host(`grafana.tt.miaj.tech`)"
+      service: grafana-service
+    #abc
+  services:
+    traefik-service:
+      loadBalancer:
+        servers:
+          - url: "http://10.225.150.12:8080"
+    proxmox-service:
+      loadBalancer:
+        servers:
+          - url: "https://10.225.150.1:8006"
+    tt-minio:
+      loadBalancer:
+        servers:
+          - url: "http://10.225.99.11:9001"
+    tt-s3:
+      loadBalancer:
+        servers:
+          - url: "http://10.225.99.11:9000"
+    grafana-service:
+      loadBalancer:
+        servers:
+          - url: "http://10.225.150.14:3000"

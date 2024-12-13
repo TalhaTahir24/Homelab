@@ -1,0 +1,31 @@
+name: Update proxy
+
+on:
+  push:
+    paths:
+      - 'Traefik/dynamic.yml'
+
+jobs:
+  update-proxy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Verify Changes to dynamic.yml File
+        id: check_changes
+        run: |
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^Traefik/dynamic.yml$' || echo "no_changes" > skip
+          cat skip || true
+
+      - name: Replace dynamic.yml File on Server
+        if: steps.check_changes.outputs.skip != 'no_changes'
+        run: |
+          echo "Uploading new dynamic file to server..."
+          scp ./Traefik/dynamic.yml srvadmin@10.225.150.12:/tmp/dynamic.yml
+          
+          echo "Replacing old file with the new one..."
+          ssh srvadmin@10.225.150.12 << 'EOF'
+            sudo mv /tmp/dynamic.yml /etc/traefik/dynamic/dynamic.yml
+          EOF
