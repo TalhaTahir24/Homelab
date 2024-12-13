@@ -1,0 +1,28 @@
+;
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     ns1.tt.miaj.tech. root.tt.miaj.tech. (
+                              5         ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@       IN      NS      ns1.tt.miaj.tech.
+@       IN      A       10.225.150.11
+ns1     IN      A       10.225.150.11
+talha1  IN      A       1.2.3.4
+
+; main servers
+tt-prd-ns       IN      A       10.225.150.11
+tt-prd-prxy     IN      A       10.225.150.12
+
+
+; cname recordes
+titon           IN      CNAME   tt-prd-prxy.tt.miaj.tech.
+traefik         IN      CNAME   tt-prd-prxy.tt.miaj.tech.
+tt-s3           IN      CNAME   tt-prd-prxy.tt.miaj.tech.
+tt-minio        IN      CNAME   tt-prd-prxy.tt.miaj.tech.
+grafana         IN      CNAME   tt-prd-prxy.tt.miaj.tech.
+pipeline        IN      CNAME   tt-prd-prxy.tt.miaj.tech.
