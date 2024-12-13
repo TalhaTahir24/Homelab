@@ -6,7 +6,7 @@ on:
       - 'CV/index.html'
 
 jobs:
-  update-dns:
+  update-CV:
     runs-on: self-hosted
 
     steps:
