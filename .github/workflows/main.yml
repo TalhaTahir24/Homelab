@@ -2,8 +2,8 @@ name: Update DNS Configuration
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - 'DNS/db.tt.miaj.tech'
 
 jobs:
   update-dns:
@@ -13,7 +13,14 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
+      - name: Verify Changes to DNS File
+        id: check_changes
+        run: |
+          git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q '^DNS/db.tt.miaj.tech$' || echo "no_changes" > skip
+          cat skip || true
+
       - name: Replace DNS Zone File on Server
+        if: steps.check_changes.outputs.skip != 'no_changes'
         run: |
           echo "Uploading new DNS zone file to server..."
           scp ./DNS/db.tt.miaj.tech srvadmin@10.225.150.11:/tmp/db.tt.miaj.tech
