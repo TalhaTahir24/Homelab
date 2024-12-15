@@ -3,9 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Refined Hello World Animation</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            background-size: 200% 200%;
+            animation: gradientBackground 10s ease infinite;
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+        }
+
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            position: relative;
+        }
+
+        .text {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            animation: slideIn 3s ease forwards, floatEffect 6s ease-in-out infinite;
+            background: linear-gradient(90deg, #1dd1a1, #48dbfb, #f368e0, #ff9f43, #ee5253);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes floatEffect {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .text:hover {
+            animation: hoverEffect 0.5s ease forwards;
+        }
+
+        @keyframes hoverEffect {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            }
+            100% {
+                transform: scale(1.2);
+                text-shadow: 0 6px 30px rgba(255, 255, 255, 0.8);
+            }
+        }
+
+    </style>
 </head>
 <body>
-<h1>HELLO!!!,</h1>
+    <div class="container">
+        <div class="text">Hello World!!!</div>
+    </div>
 </body>
 </html>
