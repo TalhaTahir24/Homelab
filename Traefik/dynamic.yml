@@ -4,8 +4,7 @@ http:
       entryPoints:
         - websecure
       rule: "Host(`traefik.tt.miaj.tech`)"
-      service: traefik-service
-#abc      
+      service: traefik-service    
     proxmox:
       entryPoints:
         - websecure
