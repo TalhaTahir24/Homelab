@@ -25,7 +25,11 @@ http:
         - websecure
       rule: "Host(`grafana.tt.miaj.tech`)"
       service: grafana-service
-    #abc
+    prometheus:
+      entryPoints:
+        - websecure
+      rule: "Host(`prometheus.tt.miaj.tech`)"
+      service: prometheus-service
   services:
     traefik-service:
       loadBalancer:
@@ -47,3 +51,7 @@ http:
       loadBalancer:
         servers:
           - url: "http://10.225.150.14:3000"
+    prometheus-service:
+      loadBalancer:
+        servers:
+          - url: "http://10.225.150.14:9090"
