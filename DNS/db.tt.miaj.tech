@@ -25,4 +25,4 @@ traefik         IN      CNAME   tt-prd-prxy.tt.miaj.tech.
 tt-s3           IN      CNAME   tt-prd-prxy.tt.miaj.tech.
 tt-minio        IN      CNAME   tt-prd-prxy.tt.miaj.tech.
 grafana         IN      CNAME   tt-prd-prxy.tt.miaj.tech.
-pipeline        IN      CNAME   tt-prd-prxy.tt.miaj.tech.
+prometheus      IN      CNAME   tt-prd-prxy.tt.miaj.tech.
