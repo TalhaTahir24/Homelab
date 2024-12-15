@@ -15,6 +15,7 @@ http:
         - websecure
       rule: "Host(`tt-minio.tt.miaj.tech`)"
       service: tt-minio
+      #abc
     tt-s3:
       entryPoints:
         - websecure
