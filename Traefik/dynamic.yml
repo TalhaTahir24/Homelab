@@ -3,32 +3,32 @@ http:
     traefik:
       entryPoints:
         - websecure
-      rule: "Host(`traefik.tt.miaj.tech`)"
+      rule: "Host(`traefik.tt.miaj.dev`)"
       service: traefik-service    
     proxmox:
       entryPoints:
         - websecure
-      rule: "Host(`titon.tt.miaj.tech`)"
+      rule: "Host(`titon.tt.miaj.dev`)"
       service: proxmox-service
     tt-minio:
       entryPoints:
         - websecure
-      rule: "Host(`tt-minio.tt.miaj.tech`)"
+      rule: "Host(`tt-minio.tt.miaj.dev`)"
       service: tt-minio
     tt-s3:
       entryPoints:
         - websecure
-      rule: "Host(`tt-s3.tt.miaj.tech`)"
+      rule: "Host(`tt-s3.tt.miaj.dev`)"
       service: tt-s3
     grafana:
       entryPoints:
         - websecure
-      rule: "Host(`grafana.tt.miaj.tech`)"
+      rule: "Host(`grafana.tt.miaj.dev`)"
       service: grafana-service
     prometheus:
       entryPoints:
         - websecure
-      rule: "Host(`prometheus.tt.miaj.tech`)"
+      rule: "Host(`prometheus.tt.miaj.dev`)"
       service: prometheus-service
   services:
     traefik-service:
